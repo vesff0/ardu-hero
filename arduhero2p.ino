@@ -1,18 +1,21 @@
 //Define os pinos dos LEDs, botões e LED RGB.
 const
-int lowestPin = 3;
+int lowestPin = 4;
 
 const
-int highestPin = 8;
+int highestPin = 9;
 
-int buttonPin = 10;
+int buttonPin = 2;
+int buttonPin2 = 3;
 
 int r = 13;
 int g = 12;
 int b = 11;
 
 //Define variáveis para lógica do jogo.
+int modoJogo;
 volatile int buttonState;
+volatile int buttonState2;
 volatile int ledState;
 volatile int ledState2;
 volatile bool acerto;
@@ -39,6 +42,7 @@ void buttonInterrupt() {
   //isso evita o código de rodar a mesma parte várias vezes
   if (verificador == false) {
     buttonState = digitalRead(buttonPin);
+    buttonState2 = digitalRead(buttonPin2);
     ledState = digitalRead(highestPin);
     ledState2 = digitalRead(lowestPin);
   
@@ -73,7 +77,7 @@ void buttonInterrupt() {
   }
   if (verificador == false) {
     if (p2) {
-      if (ledState2 == HIGH && buttonState == LOW) {
+      if (ledState2 == HIGH && buttonState2 == LOW) {
         acerto = true;
         verificador = true;
         digitalWrite(g, HIGH);
@@ -85,7 +89,7 @@ void buttonInterrupt() {
         pointFlag = true;
       }
       //Caso o usuário erre.
-      else if (ledState2 == LOW && buttonState == LOW) {
+      else if (ledState2 == LOW && buttonState2 == LOW) {
         digitalWrite(r, HIGH);
         digitalWrite(g, LOW);
         acerto = false;
@@ -107,6 +111,9 @@ void buttonInterrupt() {
       
   }
 }
+
+
+
 void setup() {
 
   //define todos os pins como OUTPUT
@@ -120,7 +127,9 @@ void setup() {
 
   Serial.begin(9600);
   pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(buttonPin), buttonInterrupt, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(buttonPin2), buttonInterrupt, CHANGE);
 
 }
 
