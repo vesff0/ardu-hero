@@ -77,7 +77,6 @@ void buttonInterrupt() {
       }
     //Caso o usuário erre.
     else if (ledState == LOW && buttonState == LOW) {
-      digitalWrite(r, HIGH);
       digitalWrite(g, LOW);
       acerto = false;
       verificador = true;
@@ -101,7 +100,6 @@ void buttonInterrupt() {
       }
       //Caso o usuário erre.
       else if (ledState2 == LOW && buttonState2 == LOW) {
-        digitalWrite(r, HIGH);
         digitalWrite(g, LOW);
         acerto = false;
         verificador = true;
@@ -300,9 +298,8 @@ void loop() {
               Serial.print("Sua pontuacao eh de ");
               Serial.print(pontos);
               Serial.println(" pontos.");
-              Serial.print("O recorde dessa sessao eh: ");
-              Serial.println(pontoMax);
               Serial.println("");
+              delay(100000);
               pontos = 0;
               gameBegin = false;
               if (valorDelay < 100) {
@@ -638,6 +635,7 @@ void loop() {
             digitalWrite(thisPin, LOW);
             Serial.print("Pontos: ");
             Serial.println(pontos);
+            delay(100000);
             pontos = 0;
             gameBegin = false;
             if (valorDelay < 100) {
@@ -706,6 +704,7 @@ void loop() {
             digitalWrite(thisPin, LOW);
             Serial.print("Pontos: ");
             Serial.println(pontos);
+            delay(100000);
             pontos = 0;
             gameBegin = false;
             if (valorDelay < 100) {
@@ -778,6 +777,7 @@ void loop() {
                 digitalWrite(thisPin, LOW);
                 Serial.print("Pontos: ");
                 Serial.println(pontos);
+                delay(100000);
                 pontos = 0;
                 gameBegin = false;
                 if (valorDelay < 100) {
@@ -849,6 +849,7 @@ void loop() {
                 digitalWrite(thisPin, LOW);
                 Serial.print("Pontos: ");
                 Serial.println(pontos);
+                delay(100000);
                 pontos = 0;
                 gameBegin = false;
                 if (valorDelay < 100) {
