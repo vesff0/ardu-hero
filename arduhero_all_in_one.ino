@@ -152,7 +152,6 @@ void loop() {
       }
       if (digitalRead(buttonPin2) == LOW) {
         //se o botão de trocar de modo for pressionado, troca de modo
-        Serial.println(digitalRead(buttonPin2));
         modoJogo = 2;
         delay(500);
       }
